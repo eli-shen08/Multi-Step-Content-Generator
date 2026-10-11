@@ -1,0 +1,119 @@
+{
+  "idea": "Announce to customers that our app now supports dark mode.",
+  "brief": {
+    "audience": "Customers",
+    "content_type": "Release note",
+    "purpose": "To inform customers that the application now supports dark mode.",
+    "key_messages": [
+      "The app now supports dark mode.",
+      "Customers can enable this feature to improve visual comfort in low-light environments."
+    ],
+    "tone": "Informative and professional",
+    "assumptions": [
+      "The feature is fully implemented and available to all users.",
+      "The specific method for enabling dark mode (e.g., settings menu) is standard and does not require detailed technical explanation in this brief."
+    ]
+  },
+  "outline": {
+    "sections": [
+      {
+        "heading": "Announcement",
+        "point": "Introduce the new dark mode feature and its availability to all users",
+        "approx_words": 30
+      },
+      {
+        "heading": "Feature Overview",
+        "point": "State that the app now supports dark mode",
+        "approx_words": 20
+      },
+      {
+        "heading": "How to Enable",
+        "point": "Briefly explain that users can activate dark mode via the standard settings menu",
+        "approx_words": 25
+      },
+      {
+        "heading": "Benefits",
+        "point": "Highlight improved visual comfort in low‑light environments",
+        "approx_words": 30
+      },
+      {
+        "heading": "Closing",
+        "point": "Reaffirm the commitment to enhancing user experience and invite feedback",
+        "approx_words": 20
+      }
+    ]
+  },
+  "draft": {
+    "title": "Release Note: Dark Mode Now Available",
+    "body_markdown": "## Announcement\nWe are pleased to announce that dark mode is now available for all users of the application.\n\n## Feature Overview\nThe app now supports dark mode, offering a new visual option.\n\n## How to Enable\nYou can activate dark mode through the standard settings menu in the app.\n\n## Benefits\nEnabling dark mode provides improved visual comfort, especially in low‑light environments.\n\n## Closing\nWe remain committed to enhancing your experience and welcome any feedback you may have."
+  },
+  "review": {
+    "summary": "The draft effectively communicates the key messages in an informative and professional tone suitable for customers. It covers the availability of the feature, how to enable it, and the specific benefit regarding visual comfort. There are no invented facts or missing key messages. Minor structural improvements could be made to streamline the opening and ensure the call to action is distinct, but the content is largely sound.",
+    "issues": [
+      {
+        "id": "I1",
+        "severity": "low",
+        "problem": "The opening section 'Announcement' is slightly redundant with the title and the 'Feature Overview' section. It repeats that dark mode is available without adding new information.",
+        "fix": "Merge the 'Announcement' and 'Feature Overview' sections into a single concise introduction that states the availability and the core feature in one go."
+      },
+      {
+        "id": "I2",
+        "severity": "low",
+        "problem": "The 'Closing' section combines a commitment statement with a request for feedback, which blurs the line between a standard sign-off and a call to action. The brief does not explicitly request feedback, though it is a common practice. However, the primary purpose is to inform, so the feedback request is optional but should be clear if included.",
+        "fix": "Keep the closing professional. If feedback is desired, make it a distinct sentence. If not required by the brief, it can be removed to keep the note strictly informative, but it is not an error to include it."
+      }
+    ],
+    "missing_key_messages": [],
+    "score": 8
+  },
+  "improved": {
+    "title": "Release Note: Dark Mode Now Available",
+    "body_markdown": "## What's New\nThe app now supports Dark Mode, providing a visual option that improves comfort in low‑light environments.\n\n## How to Enable\nEnable Dark Mode in the application’s settings.\n\n## Note\nPlease update your preferences to take advantage of this new feature.\n"
+  },
+  "final": {
+    "title": "Release Note: Dark Mode Now Available",
+    "final_markdown": "## What's New\nThe app now supports Dark Mode, providing a visual option that improves comfort in low‑light environments.\n\n## How to Enable\nEnable Dark Mode in the application’s settings.\n\n## Note\nPlease update your preferences to take advantage of this new feature.\n",
+    "resolved": [
+      {
+        "issue_id": "I1",
+        "how": "The instruction now uses a general phrase \"Enable Dark Mode in the application’s settings\" without specifying a UI path, satisfying the brief."
+      },
+      {
+        "issue_id": "I2",
+        "how": "The closing call‑to‑action is a professional statement \"Please update your preferences to take advantage of this new feature,\" removing informal language and any assumed feedback channel."
+      },
+      {
+        "issue_id": "I3",
+        "how": "The unnecessary \"Introduction\" heading has been omitted; the note starts directly with the \"## What's New\" heading."
+      }
+    ]
+  },
+  "score_before": 8,
+  "score_after": 7,
+  "final_review": {
+    "summary": "The draft is concise, professional, and covers the key messages. However, it lacks a clear call to action (CTA) and could be slightly more engaging in the opening to better fit a release note format.",
+    "issues": [
+      {
+        "id": "I1",
+        "severity": "medium",
+        "problem": "The 'Note' section acts as a weak call to action. It says 'Please update your preferences' but doesn't explicitly direct the user to do so or highlight the benefit of doing so immediately.",
+        "fix": "Change the 'Note' section to a clear Call to Action, e.g., 'Update your settings now to enjoy a more comfortable viewing experience in low light.'"
+      },
+      {
+        "id": "I2",
+        "severity": "low",
+        "problem": "The opening is functional but dry. Release notes often benefit from a slightly more engaging hook that highlights the user benefit immediately.",
+        "fix": "Consider starting with the benefit: 'Enjoy a more comfortable viewing experience in low light with the new Dark Mode feature.'"
+      }
+    ],
+    "missing_key_messages": [],
+    "score": 7
+  },
+  "rounds": 3,
+  "score_history": [
+    8,
+    6,
+    4,
+    7
+  ]
+}

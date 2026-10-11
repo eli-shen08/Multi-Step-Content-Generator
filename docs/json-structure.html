@@ -1,0 +1,125 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>JSON Between Steps</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600;700&display=swap">
+<style>
+:root { --bg:#131715; --surface:#1b201d; --fg:#e4e9e6; --muted:#98a39d; --line:#2e3531;
+  --qwen:#4fd1bd; --g20:#f0b45a; --g120:#86a6ff; --key:#86a6ff; --str:#a8e6a1; --num:#f0b45a; color-scheme: dark; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.5 "IBM Plex Sans", system-ui, sans-serif; padding:28px; }
+h1 { margin:0 0 4px; font-size:1.5rem; }
+.lede { margin:0 0 20px; color:var(--muted); }
+.grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px; align-items:start; }
+.card { background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--muted); border-radius:10px; overflow:hidden; }
+.card.qwen { border-top-color:var(--qwen); } .card.g20 { border-top-color:var(--g20); } .card.g120 { border-top-color:var(--g120); }
+header { display:flex; gap:12px; align-items:flex-start; padding:12px 16px; border-bottom:1px solid var(--line); }
+.num { flex:none; width:28px; height:28px; border-radius:50%; display:grid; place-items:center; font-weight:700; background:var(--line); }
+h2 { margin:0; font-size:1rem; } h2 small { color:var(--muted); font-weight:400; }
+h2 code { font:600 .95rem "IBM Plex Mono", monospace; }
+header p { margin:2px 0 0; color:var(--muted); font-size:.85rem; } header p b { color:var(--fg); font-weight:600; }
+pre { margin:0; padding:14px 16px; font:12.5px/1.55 "IBM Plex Mono", Consolas, monospace; white-space:pre-wrap; }
+.k { color:var(--key); } .s { color:var(--str); } .n { color:var(--num); }
+.note { margin-top:16px; color:var(--muted); font-size:.9rem; }
+</style></head><body>
+<h1>JSON passed between steps</h1>
+<p class="lede">Real output from the baseline run (“We launched a new employee attendance feature.”), shortened. Every object is validated against its Pydantic schema in <code>pipeline/schemas.py</code>.</p>
+<div class="grid">
+<article class="card qwen">
+  <header><span class="num">1</span><div><h2>Understand <small>returns</small> <code>Brief</code></h2>
+  <p>receives: <b>idea (plain text)</b> &nbsp;·&nbsp; passed on to steps: <b>2, 3, 4, 5, +</b></p></div></header>
+  <pre>{
+  <span class="k">&quot;audience&quot;</span>: <span class="s">&quot;Internal employees&quot;</span>,
+  <span class="k">&quot;content_type&quot;</span>: <span class="s">&quot;Internal email&quot;</span>,
+  <span class="k">&quot;purpose&quot;</span>: <span class="s">&quot;To inform staff about the availability of the new attendanc…&quot;</span>,
+  <span class="k">&quot;key_messages&quot;</span>: [
+    <span class="s">&quot;A new employee attendance feature has been launched.&quot;</span>,
+    <span class="s">&quot;The feature is now available for use.&quot;</span>,
+    <span class="s">&quot;Employees should begin using the new feature for atten…&quot;</span>
+  ],
+  <span class="k">&quot;tone&quot;</span>: <span class="s">&quot;Professional and informative&quot;</span>,
+  <span class="k">&quot;assumptions&quot;</span>: [
+    <span class="s">&quot;The audience is internal employees rather than custome…&quot;</span>,
+    <span class="s">&quot;The content type is an internal email, which is a stan…&quot;</span>,
+    <span class="s">&quot;…&quot;</span>
+  ]
+}</pre>
+</article>
+<article class="card g20">
+  <header><span class="num">2</span><div><h2>Outline <small>returns</small> <code>Outline</code></h2>
+  <p>receives: <b>Brief</b> &nbsp;·&nbsp; passed on to steps: <b>3</b></p></div></header>
+  <pre>{
+  <span class="k">&quot;sections&quot;</span>: [
+    {
+      <span class="k">&quot;heading&quot;</span>: <span class="s">&quot;Subject Line&quot;</span>,
+      <span class="k">&quot;point&quot;</span>: <span class="s">&quot;Clear announcement of new attendance feature…&quot;</span>,
+      <span class="k">&quot;approx_words&quot;</span>: <span class="n">5</span>
+    },
+    {
+      <span class="k">&quot;heading&quot;</span>: <span class="s">&quot;Opening Greeting&quot;</span>,
+      <span class="k">&quot;point&quot;</span>: <span class="s">&quot;Professional salutation to all employees&quot;</span>,
+      <span class="k">&quot;approx_words&quot;</span>: <span class="n">15</span>
+    },
+    <span class="s">&quot;… 5 more&quot;</span>
+  ]
+}</pre>
+</article>
+<article class="card g120">
+  <header><span class="num">3</span><div><h2>Draft <small>returns</small> <code>Draft</code></h2>
+  <p>receives: <b>Brief + Outline</b> &nbsp;·&nbsp; passed on to steps: <b>4, 5</b></p></div></header>
+  <pre>{
+  <span class="k">&quot;title&quot;</span>: <span class="s">&quot;New Attendance Feature Now Available&quot;</span>,
+  <span class="k">&quot;body_markdown&quot;</span>: <span class="s">&quot;### Subject Line New Attendance Feature Launch ### Opening Greeting Dear Team, ### Feature Announcement We are pleased to announce that a new employe…&quot;</span>
+}</pre>
+</article>
+<article class="card qwen">
+  <header><span class="num">4</span><div><h2>Review <small>returns</small> <code>Review</code></h2>
+  <p>receives: <b>Brief + Draft</b> &nbsp;·&nbsp; passed on to steps: <b>5, 6</b></p></div></header>
+  <pre>{
+  <span class="k">&quot;summary&quot;</span>: <span class="s">&quot;The draft effectively conveys the core message and maintain…&quot;</span>,
+  <span class="k">&quot;issues&quot;</span>: [
+    {
+      <span class="k">&quot;id&quot;</span>: <span class="s">&quot;I1&quot;</span>,
+      <span class="k">&quot;severity&quot;</span>: <span class="s">&quot;high&quot;</span>,
+      <span class="k">&quot;problem&quot;</span>: <span class="s">&quot;The draft invents specific navigation details (&#x27;i…&quot;</span>,
+      <span class="k">&quot;fix&quot;</span>: <span class="s">&quot;Remove the specific navigation steps. Replace wit…&quot;</span>
+    },
+    {
+      <span class="k">&quot;id&quot;</span>: <span class="s">&quot;I2&quot;</span>,
+      <span class="k">&quot;severity&quot;</span>: <span class="s">&quot;medium&quot;</span>,
+      <span class="k">&quot;problem&quot;</span>: <span class="s">&quot;The opening greeting &#x27;Dear Team&#x27; followed by a se…&quot;</span>,
+      <span class="k">&quot;fix&quot;</span>: <span class="s">&quot;Combine the greeting and the first sentence for b…&quot;</span>
+    },
+    <span class="s">&quot;…&quot;</span>
+  ],
+  <span class="k">&quot;missing_key_messages&quot;</span>: [],
+  <span class="k">&quot;score&quot;</span>: <span class="n">4</span>
+}</pre>
+</article>
+<article class="card g120">
+  <header><span class="num">5</span><div><h2>Improve <small>returns</small> <code>Draft</code></h2>
+  <p>receives: <b>Brief + Draft + Review</b> &nbsp;·&nbsp; passed on to steps: <b>6</b></p></div></header>
+  <pre>{
+  <span class="k">&quot;title&quot;</span>: <span class="s">&quot;New Attendance Feature Now Available&quot;</span>,
+  <span class="k">&quot;body_markdown&quot;</span>: <span class="s">&quot;### Subject Line New Attendance Feature Launch ### Opening Hi Team, We are pleased to inform you that the new employee attendance feature has been la…&quot;</span>
+}</pre>
+</article>
+<article class="card g120">
+  <header><span class="num">6</span><div><h2>Final <small>returns</small> <code>Final</code></h2>
+  <p>receives: <b>Draft (improved) + Review</b> &nbsp;·&nbsp; passed on to steps: <b>+ (as text)</b></p></div></header>
+  <pre>{
+  <span class="k">&quot;title&quot;</span>: <span class="s">&quot;New Attendance Feature Now Available&quot;</span>,
+  <span class="k">&quot;final_markdown&quot;</span>: <span class="s">&quot;### Subject Line New Attendance Feature Launch ### Opening …&quot;</span>,
+  <span class="k">&quot;resolved&quot;</span>: [
+    {
+      <span class="k">&quot;issue_id&quot;</span>: <span class="s">&quot;I1&quot;</span>,
+      <span class="k">&quot;how&quot;</span>: <span class="s">&quot;Removed invented navigation details and used gene…&quot;</span>
+    },
+    {
+      <span class="k">&quot;issue_id&quot;</span>: <span class="s">&quot;I2&quot;</span>,
+      <span class="k">&quot;how&quot;</span>: <span class="s">&quot;Rewrote opening to combine greeting and announcem…&quot;</span>
+    },
+    <span class="s">&quot;…&quot;</span>
+  ]
+}</pre>
+</article></div>
+<p class="note"><code>score</code> is computed in code from the issues (10 − 3 per high, 2 per medium, 1 per low); the model never writes it. The re-review (+) returns another <code>Review</code> for the final text.</p>
+</body></html>

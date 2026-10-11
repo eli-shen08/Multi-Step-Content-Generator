@@ -1,0 +1,141 @@
+{
+  "idea": "We launched a new employee attendance feature.",
+  "brief": {
+    "audience": "Internal employees",
+    "content_type": "Internal email",
+    "purpose": "To inform staff about the availability of the new attendance feature and encourage its adoption.",
+    "key_messages": [
+      "A new employee attendance feature has been launched.",
+      "The feature is now available for use.",
+      "Employees should begin using the new feature for attendance tracking."
+    ],
+    "tone": "Professional and informative",
+    "assumptions": [
+      "The audience is internal employees rather than customers or external stakeholders.",
+      "The content type is an internal email, which is a standard channel for announcing new internal tools.",
+      "The purpose is primarily informational and adoption-focused, as no specific metric or urgent action was specified."
+    ]
+  },
+  "outline": {
+    "sections": [
+      {
+        "heading": "Subject Line",
+        "point": "Clear announcement of new attendance feature launch",
+        "approx_words": 5
+      },
+      {
+        "heading": "Opening Greeting",
+        "point": "Professional salutation to all employees",
+        "approx_words": 15
+      },
+      {
+        "heading": "Feature Announcement",
+        "point": "Inform that the new attendance feature has been launched and is now available",
+        "approx_words": 60
+      },
+      {
+        "heading": "How to Access",
+        "point": "Brief instructions on where to find and activate the feature",
+        "approx_words": 40
+      },
+      {
+        "heading": "Encouragement to Adopt",
+        "point": "Encourage employees to start using the new feature for attendance tracking",
+        "approx_words": 50
+      },
+      {
+        "heading": "Support and Resources",
+        "point": "Provide links to help docs and contact for questions",
+        "approx_words": 30
+      },
+      {
+        "heading": "Closing",
+        "point": "Thank staff for their cooperation and sign off",
+        "approx_words": 15
+      }
+    ]
+  },
+  "draft": {
+    "title": "New Attendance Feature Now Available",
+    "body_markdown": "### Subject Line\nNew Attendance Feature Launch\n\n### Opening Greeting\nDear Team,\n\n### Feature Announcement\nWe are pleased to announce that a new employee attendance feature has been launched and is now available for use. This tool is designed to streamline the way you record and manage your daily attendance, providing a more efficient and user‑friendly experience.\n\n### How to Access\nYou can access the feature through the internal portal under the **Tools** section. Simply click on **Attendance**, follow the on‑screen prompts to activate it, and you’ll be ready to start tracking your time.\n\n### Encouragement to Adopt\nWe encourage all employees to begin using the new attendance feature for their daily tracking. Adopting this tool will help ensure accurate records and simplify reporting for both staff and management.\n\n### Support and Resources\nFor detailed instructions and FAQs, please refer to the [HELP DOCUMENTATION LINK]. If you have any questions, contact [SUPPORT CONTACT] for assistance.\n\n### Closing\nThank you for your cooperation.\n\nBest regards,\n[YOUR NAME]\n[YOUR TITLE]"
+  },
+  "review": {
+    "summary": "The draft effectively conveys the core message and maintains a professional tone suitable for internal employees. However, it includes specific navigation instructions ('Tools' section, 'Attendance' button) that are not present in the brief, which constitutes an invented fact. Additionally, the opening could be more direct, and the call to action could be slightly more explicit regarding the start date or immediate action.",
+    "issues": [
+      {
+        "id": "I1",
+        "severity": "high",
+        "problem": "The draft invents specific navigation details ('internal portal under the Tools section', 'click on Attendance') which are not provided in the brief. This is a high-severity issue as it may lead to user confusion if the actual interface differs.",
+        "fix": "Remove the specific navigation steps. Replace with a placeholder like '[LINK TO FEATURE]' or general language such as 'accessible via your employee dashboard' if that is a safe assumption, otherwise use '[INSTRUCTIONS ON HOW TO ACCESS]'."
+      },
+      {
+        "id": "I2",
+        "severity": "medium",
+        "problem": "The opening greeting 'Dear Team' followed by a separate 'Feature Announcement' header is slightly disjointed for an email. The first sentence 'We are pleased to announce...' is passive and delays the main point.",
+        "fix": "Combine the greeting and the first sentence for better flow. Start directly with the news: 'Hi Team, I am writing to inform you that the new employee attendance feature is now live.'"
+      },
+      {
+        "id": "I3",
+        "severity": "low",
+        "problem": "The phrase 'streamline the way you record and manage your daily attendance' adds value propositions not explicitly in the brief, though acceptable. However, 'providing a more efficient and user-friendly experience' is generic filler.",
+        "fix": "Trim the generic benefit statement to keep the email concise, or ensure it aligns with known benefits if available. Since the brief is minimal, keeping it simple is safer."
+      }
+    ],
+    "missing_key_messages": [],
+    "score": 4
+  },
+  "improved": {
+    "title": "New Attendance Feature Now Available",
+    "body_markdown": "### Subject Line\nNew Attendance Feature Launch\n\n### Opening\nHi Team,\n\nWe are pleased to inform you that the new employee attendance feature has been launched and is now available for use. This tool provides a straightforward way to record your daily attendance.\n\n### How to Access\nThe feature can be accessed via your employee dashboard. Please follow the instructions provided here: [INSTRUCTIONS ON HOW TO ACCESS] or click this link: [LINK TO FEATURE].\n\n### Call to Action\nWe encourage all employees to begin using the new attendance feature for daily tracking effective immediately. Adoption will help ensure accurate records and simplify reporting.\n\n### Support and Resources\nFor detailed instructions and FAQs, please refer to the [HELP DOCUMENTATION LINK]. If you have any questions, contact [SUPPORT CONTACT] for assistance.\n\n### Closing\nThank you for your cooperation.\n\nBest regards,\n[YOUR NAME]\n[YOUR TITLE]"
+  },
+  "final": {
+    "title": "New Attendance Feature Now Available",
+    "final_markdown": "### Subject Line\nNew Attendance Feature Launch\n\n### Opening\nHi Team,\n\nI am writing to inform you that the new employee attendance feature is now live and available for use. This tool provides a straightforward way to record your daily attendance.\n\n### How to Access\nThe feature can be accessed via your employee dashboard. Please follow the instructions provided here: [INSTRUCTIONS ON HOW TO ACCESS] or click this link: [LINK TO FEATURE].\n\n### Call to Action\nWe encourage all employees to begin using the new attendance feature for daily tracking effective immediately. Adoption will help ensure accurate records and simplify reporting.\n\n### Support and Resources\nFor detailed instructions and FAQs, please refer to the [HELP DOCUMENTATION LINK]. If you have any questions, contact [SUPPORT CONTACT] for assistance.\n\n### Closing\nThank you for your cooperation.\n\nBest regards,\n[YOUR NAME]\n[YOUR TITLE]",
+    "resolved": [
+      {
+        "issue_id": "I1",
+        "how": "Removed invented navigation details and used general language with placeholders for access instructions."
+      },
+      {
+        "issue_id": "I2",
+        "how": "Rewrote opening to combine greeting and announcement for a direct flow."
+      },
+      {
+        "issue_id": "I3",
+        "how": "Trimmed generic benefit language to keep the email concise and focused on the core message."
+      }
+    ]
+  },
+  "score_before": 4,
+  "score_after": 7,
+  "final_review": {
+    "summary": "The draft effectively covers all key messages with a professional tone suitable for internal employees. It uses appropriate placeholders for specific details not provided in the brief. The structure is clear, with a distinct opening, body, and call to action. Minor polish is suggested for the subject line and the phrasing of the call to action to ensure it aligns strictly with the 'informative' purpose without implying an unverified mandate.",
+    "issues": [
+      {
+        "id": "I1",
+        "severity": "low",
+        "problem": "The subject line 'New Attendance Feature Launch' is slightly less direct than the title 'New Attendance Feature Now Available'. 'Launch' can sometimes imply a past event or a marketing event, whereas 'Now Available' clearly signals current utility.",
+        "fix": "Change the subject line to 'New Attendance Feature Now Available' to match the title and clearly indicate immediate availability."
+      },
+      {
+        "id": "I2",
+        "severity": "low",
+        "problem": "The phrase 'effective immediately' in the Call to Action section can be perceived as overly directive or urgent, which may conflict with the 'professional and informative' tone if the policy change isn't strictly mandatory from this day. The brief asks to 'encourage' adoption, not mandate it with urgency.",
+        "fix": "Soften the phrasing to 'We encourage all employees to begin using the new attendance feature for daily tracking as soon as possible' or 'starting now' to maintain a professional, encouraging tone without implying a hard deadline unless specified."
+      },
+      {
+        "id": "I3",
+        "severity": "low",
+        "problem": "The opening sentence 'I am writing to inform you that...' is a bit passive and wordy. Internal emails are often more direct.",
+        "fix": "Revise to 'The new employee attendance feature is now live and available for use.' for a more concise, professional start."
+      }
+    ],
+    "missing_key_messages": [],
+    "score": 7
+  },
+  "rounds": 1,
+  "score_history": [
+    4,
+    7
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "idea": "New update is out.",
+  "brief": {
+    "audience": "Existing users and stakeholders",
+    "content_type": "Release note",
+    "purpose": "To inform the audience that a new software update has been released and is available for use.",
+    "key_messages": [
+      "A new update is now available.",
+      "Users can access the latest version immediately."
+    ],
+    "tone": "Informative and neutral",
+    "assumptions": [
+      "The 'update' refers to a software or product release.",
+      "The audience is already familiar with the product and expects notifications about changes.",
+      "No specific features, bug fixes, or metrics are included in the source idea, so the brief focuses solely on the availability of the update."
+    ]
+  },
+  "outline": {
+    "sections": [
+      {
+        "heading": "Release Announcement",
+        "point": "Inform readers that a new software update has been released.",
+        "approx_words": 30
+      },
+      {
+        "heading": "Immediate Availability",
+        "point": "Communicate that users can access the latest version right away.",
+        "approx_words": 25
+      },
+      {
+        "heading": "How to Update",
+        "point": "Briefly explain the steps or link to instructions for installing the update.",
+        "approx_words": 30
+      },
+      {
+        "heading": "Next Steps",
+        "point": "Encourage users to explore the new version and provide support contact if needed.",
+        "approx_words": 20
+      }
+    ]
+  },
+  "draft": {
+    "title": "Release Note",
+    "body_markdown": "### Release Announcement\nA new software update has been released and is now available for all users.\n\n### Immediate Availability\nYou can access the latest version immediately.\n\n### How to Update\nTo install the update, follow the standard update process in the application or refer to the instructions here: [LINK TO UPDATE GUIDE].\n\n### Next Steps\nExplore the new version and reach out to [SUPPORT CONTACT] if you need assistance."
+  },
+  "review": {
+    "summary": "The draft effectively communicates the core message of the update's availability and immediate access. However, it includes a 'How to Update' section with a placeholder link that implies specific instructions exist, which may be unnecessary or misleading if the update is automatic or standard. The tone is appropriate, but the structure could be slightly more concise for a simple release note.",
+    "issues": [
+      {
+        "id": "I1",
+        "severity": "medium",
+        "problem": "The 'How to Update' section adds unnecessary complexity and assumes a specific manual process that may not apply to all users (e.g., if the update is automatic). It also introduces a placeholder [LINK TO UPDATE GUIDE] which is not in the brief and may not be needed.",
+        "fix": "Remove the 'How to Update' section entirely, or replace it with a brief, neutral statement like 'The update will be applied automatically' or 'Please restart the application to apply the update,' depending on the actual mechanism. If specific instructions are truly needed, keep the placeholder but ensure it's clearly optional."
+      },
+      {
+        "id": "I2",
+        "severity": "low",
+        "problem": "The title 'Release Note' is generic. A slightly more descriptive title could improve clarity, though this is minor.",
+        "fix": "Consider changing the title to 'Software Update Available' or 'New Version Released' for immediate clarity."
+      },
+      {
+        "id": "I3",
+        "severity": "low",
+        "problem": "The phrase 'reach out to [SUPPORT CONTACT]' is slightly informal for a neutral, informative tone.",
+        "fix": "Change to 'contact support at [SUPPORT CONTACT]' or 'visit our support page for assistance' to maintain a more professional tone."
+      }
+    ],
+    "missing_key_messages": [],
+    "score": 6
+  },
+  "improved": {
+    "title": "Software Update Available",
+    "body_markdown": "### Release Announcement\nA new software update has been released and is now available for all users.\n\n### Immediate Availability\nYou can access the latest version immediately.\n\n### Next Steps\nExplore the new version and contact support at [SUPPORT CONTACT] if you need assistance."
+  },
+  "final": {
+    "title": "Software Update Available",
+    "final_markdown": "### Release Announcement\nA new software update has been released and is now available for all users.\n\n### Immediate Availability\nYou can access the latest version immediately.\n\n### Next Steps\nExplore the new version and contact support at [SUPPORT CONTACT] if you need assistance.",
+    "resolved": [
+      {
+        "issue_id": "I1",
+        "how": "The unnecessary 'How to Update' section was not present in the revised draft, so no removal was needed; the content remains concise and neutral."
+      },
+      {
+        "issue_id": "I2",
+        "how": "The title is already descriptive as 'Software Update Available'; no change was required."
+      },
+      {
+        "issue_id": "I3",
+        "how": "The phrase already uses the professional wording 'contact support at [SUPPORT CONTACT]', satisfying the tone requirement."
+      }
+    ]
+  },
+  "score_before": 6,
+  "score_after": 8,
+  "final_review": {
+    "summary": "The draft effectively covers the key messages with the correct audience and tone. It is concise and clear, though it could be slightly more direct in the opening to improve flow.",
+    "issues": [
+      {
+        "id": "I1",
+        "severity": "low",
+        "problem": "The opening is slightly passive and redundant with the section header.",
+        "fix": "Combine the header and first sentence for a stronger, more direct opening, e.g., 'A new software update is now available for all users.'"
+      },
+      {
+        "id": "I2",
+        "severity": "low",
+        "problem": "The 'Next Steps' section adds a call to action (contacting support) that is not explicitly requested in the brief, though it is a reasonable assumption for a release note. However, the phrase 'Explore the new version' is vague given the brief states no specific features are included.",
+        "fix": "Remove 'Explore the new version' or replace it with a more neutral prompt like 'Please update to the latest version.' Keep the support contact placeholder as it is a standard and helpful addition for existing users."
+      }
+    ],
+    "missing_key_messages": [],
+    "score": 8
+  }
+}

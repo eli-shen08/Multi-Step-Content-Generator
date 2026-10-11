@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Multi-Step Content Generator</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main>
+    <h1>Multi-Step Content Generator</h1>
+    <p class="sub">Idea → Brief → Outline → Draft → Review → Improved draft → Final</p>
+
+    <form id="form">
+      <textarea id="idea" maxlength="500" rows="2" placeholder="We launched a new employee attendance feature." required></textarea>
+      <div class="row">
+        <select id="examples" aria-label="Test cases">
+          <option value="">Test cases…</option>
+          <option>We launched a new employee attendance feature.</option>
+          <option>New update is out.</option>
+          <option>Write a LinkedIn post: we cut payroll processing time by 40%.</option>
+          <option>Announce to customers that our app now supports dark mode.</option>
+          <option>We're discontinuing the legacy reporting tool next month.</option>
+        </select>
+        <button id="run" type="submit">Generate</button>
+      </div>
+    </form>
+
+    <div id="summary" class="summary" hidden></div>
+    <ol id="steps" class="steps"></ol>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
