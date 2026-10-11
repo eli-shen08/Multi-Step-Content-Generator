@@ -3,6 +3,7 @@ import json
 import time
 from typing import TypeVar
 
+from openai import BadRequestError
 from pydantic import BaseModel, ValidationError
 
 from pipeline import moderation
@@ -37,13 +38,22 @@ def call_llm(stage: str, system: str, user: str, schema: type[T], untrusted_inpu
     last_error: Exception | None = None
     for _ in range(MAX_ATTEMPTS):
         emit("status", stage=stage, text=f"Generating with {model}")
-        resp = chat(
-            model=model,
-            messages=messages,
-            response_format={"type": "json_object"},
-            temperature=0.4,
-            **reasoning_args(model),
-        )
+        try:
+            resp = chat(
+                model=model,
+                messages=messages,
+                response_format={"type": "json_object"},
+                temperature=0.4,
+                **reasoning_args(model),
+            )
+        except BadRequestError as exc:
+            # In JSON mode Groq rejects a reply that isn't valid JSON with a 400
+            # (json_validate_failed) instead of returning it. Treat it like invalid JSON.
+            if "json_validate_failed" not in str(exc):
+                raise
+            last_error = exc
+            messages.append({"role": "user", "content": "Your previous reply was not valid JSON. Return only a valid JSON object."})
+            continue
         raw = resp.choices[0].message.content or ""
         try:
             result = schema.model_validate_json(raw)

@@ -51,6 +51,9 @@ def reasoning_args(model: str) -> dict:
     return {"reasoning_effort": settings.reasoning_effort} if "gpt-oss" in model else {}
 
 MAX_RATE_LIMIT_WAITS = 5
+# Per-minute limits clear within seconds. A longer retry-after means the daily quota is
+# used up; waiting would freeze the app, so fail with a clear message instead.
+MAX_WAIT_SECONDS = 60
 
 
 @lru_cache(maxsize=1)
@@ -71,5 +74,10 @@ def chat(**kwargs):
             if attempt == MAX_RATE_LIMIT_WAITS:
                 raise
             wait = float(exc.response.headers.get("retry-after", 10))
+            if wait > MAX_WAIT_SECONDS:
+                raise RuntimeError(
+                    f"Rate limit on {kwargs['model']} resets in {wait / 60:.0f} min "
+                    "(free-tier daily quota likely used up). Try again later."
+                ) from exc
             emit("wait", model=kwargs["model"], seconds=wait)
             time.sleep(wait)

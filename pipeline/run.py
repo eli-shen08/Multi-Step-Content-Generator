@@ -6,6 +6,7 @@ from pathlib import Path
 
 from pipeline import steps
 from pipeline.config import settings
+from pipeline.moderation import HarmfulContentError
 from pipeline.schemas import Draft
 
 OUTPUTS = Path(__file__).resolve().parent.parent / "outputs"
@@ -80,16 +81,20 @@ def main() -> None:
     parser.add_argument("--all", action="store_true", help="run the 5 spec test cases into outputs/")
     args = parser.parse_args()
 
-    if args.all:
-        for name, idea in TEST_CASES.items():
-            print(f"\n[{name}] {idea}", flush=True)
-            result = run_pipeline(idea)
-            print(f"{save(name, result)}  score {result['score_before']} -> {result['score_after']}")
-        return
-    if not args.idea:
+    if not args.all and not args.idea:
         parser.error("give an idea or --all")
+    try:
+        if args.all:
+            for name, idea in TEST_CASES.items():
+                print(f"\n[{name}] {idea}", flush=True)
+                result = run_pipeline(idea)
+                print(f"{save(name, result)}  score {result['score_before']} -> {result['score_after']}")
+            return
+        result = run_pipeline(args.idea)
+    except (HarmfulContentError, ValueError, RuntimeError) as exc:
+        print(f"\n{'BLOCKED' if isinstance(exc, HarmfulContentError) else 'ERROR'}: {exc}", file=sys.stderr)
+        sys.exit(1)
 
-    result = run_pipeline(args.idea)
     if args.save:
         print(f"Saved {save(args.save, result)}")
     else:

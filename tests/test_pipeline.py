@@ -6,6 +6,8 @@ import json
 from pathlib import Path
 from types import SimpleNamespace
 
+import httpx
+import openai
 import pytest
 
 from pipeline import config, moderation, steps
@@ -38,7 +40,10 @@ class FakeClient:
                 raise ConnectionError("down")
             self.moderated.append(messages[-1]["content"])
             return _reply(self.verdict)
-        return _reply(self.replies.pop(0))
+        reply = self.replies.pop(0)
+        if isinstance(reply, Exception):
+            raise reply
+        return _reply(reply)
 
 
 @pytest.fixture
@@ -98,6 +103,26 @@ def test_review_score_computed_from_issues():
     assert review.score == 4
     assert Review(summary="s", issues=[], missing_key_messages=[]).score == 10
     assert "score" not in Review.model_json_schema()["properties"]  # model never sets it
+
+
+def _api_error(cls, status, message, headers=None):
+    response = httpx.Response(status, headers=headers, request=httpx.Request("POST", "https://api.groq.com"))
+    return cls(message, response=response, body=None)
+
+
+def test_groq_json_validate_failed_is_retried(fake):
+    # Groq JSON mode answers HTTP 400 json_validate_failed instead of returning broken JSON.
+    error = _api_error(openai.BadRequestError, 400, "Error code: 400 - json_validate_failed")
+    client = fake([error, BRIEF_JSON])
+    assert steps.understand("We launched a new employee attendance feature.").audience == "employees"
+    assert client.replies == []
+
+
+def test_daily_quota_fails_fast_instead_of_waiting(fake):
+    error = _api_error(openai.RateLimitError, 429, "rate limited", headers={"retry-after": "3600"})
+    fake([error])
+    with pytest.raises(RuntimeError, match="daily quota"):
+        config.chat(model="openai/gpt-oss-120b", messages=[])
 
 
 # ---------- saved outputs ----------

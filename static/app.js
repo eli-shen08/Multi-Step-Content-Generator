@@ -181,6 +181,7 @@ async function run(idea) {
   // Server-sent events: blocks of "data: {json}" separated by a blank line.
   const reader = res.body.pipeThrough(new TextDecoderStream()).getReader();
   let buffer = "";
+  let finished = false;  // set by the run's last event: done, blocked or error
   for (;;) {
     const { value, done } = await reader.read();
     if (done) break;
@@ -192,8 +193,10 @@ async function run(idea) {
       if (!chunk.startsWith("data: ")) continue;
       const event = JSON.parse(chunk.slice(6));
       HANDLERS[event.type]?.(event);
+      if (["done", "blocked", "error"].includes(event.type)) finished = true;
     }
   }
+  if (!finished) HANDLERS.error({ detail: "The connection to the server ended before the run finished. Check the server terminal." });
 }
 
 $("examples").addEventListener("change", (e) => {
